@@ -84,10 +84,10 @@ def get_chrome_driver(chromedriver_path=None, print_view=False, headless=False):
     # Iniciar el servidor proxy
     if os.name == 'nt':  # Para Windows
         browsermob_path = os.path.join(PROJECT_PATH, 'browsermob-proxy-2.1.4', 'bin', 'browsermob-proxy.bat')
-        print("Se inicia el servidor en Windows")
+        #print("Se inicia el servidor en Windows")
     else:  # Para Mac o Linux
         browsermob_path = os.path.join(PROJECT_PATH, 'browsermob-proxy-2.1.4', 'bin', 'browsermob-proxy')
-        print("Se inicia el servidor en Mac o Linux")
+        #print("Se inicia el servidor en Mac o Linux")
     
     server = Server(browsermob_path) 
     server.start()
@@ -110,46 +110,12 @@ def get_chrome_driver(chromedriver_path=None, print_view=False, headless=False):
         options.add_argument("--headless=new")
 
     if chromedriver_path is not None:
-        print("Usando el chromedriver_path: {}".format(chromedriver_path))
+        #print("Usando el chromedriver_path: {}".format(chromedriver_path))
         service = Service(executable_path=chromedriver_path)
         driver = webdriver.Chrome(service=service, options=options)
     else:
-        print("Usando el chromedriver_path por defecto")
+        #print("Usando el chromedriver_path por defecto")
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
-    return driver, server, proxy
-
-def get_firefox_driver(geckodriver_path=None, print_view=False, headless=False):
-    # Iniciar el servidor proxy
-    if os.name == 'nt':  # Para Windows
-        browsermob_path = os.path.join(PROJECT_PATH, 'browsermob-proxy-2.1.4', 'bin', 'browsermob-proxy.bat')
-        print("Se inicia el servidor en Windows")
-    else:  # Para Mac o Linux
-        browsermob_path = os.path.join(PROJECT_PATH, 'browsermob-proxy-2.1.4', 'bin', 'browsermob-proxy')
-        print("Se inicia el servidor en Mac o Linux")
-
-    server = Server(browsermob_path)
-    server.start()
-    proxy = server.create_proxy(params={'trustAllServers': 'true'})
-
-    # Configurar las opciones de Selenium
-    options = webdriver.FirefoxOptions()
-
-    options.add_argument("--no-sandbox")
-    options.add_argument("--start-maximized")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--ignore-certificate-errors")
-    options.add_argument("--proxy-server={0}".format(proxy.proxy))
-
-    if print_view:
-        options.add_argument('--disable-print-preview')
-
-    if headless:
-        options.add_argument("--headless")
-
-    print("Usando el geckodriver_path por defecto")
-    service = Service(executable_path='geckodriver.exe')
-    driver = webdriver.Firefox(service=service, options=options)
 
     return driver, server, proxy
 
