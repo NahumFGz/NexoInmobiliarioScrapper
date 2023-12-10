@@ -1,0 +1,2 @@
+<input type="hidden" id="latitude" value="-12.1040361">
+<input type="hidden" id="longitude" value="-77.0184555">
