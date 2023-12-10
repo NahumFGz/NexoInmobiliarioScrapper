@@ -16,7 +16,7 @@ if os_platform == 'darwin':
     PROJECT_PATH = '/Users/nahumfg/Projects/GitHubProjects/NexoInmobiliarioScrapper'
 
 elif os_platform == 'windows':
-    PROJECT_PATH = 'C:\GitHubProjets\NexoInmobiliarioScrapper'
+    PROJECT_PATH = 'C:\GitHubProjets\WallyScraper'
 
 elif os_platform == 'linux':
     PROJECT_PATH = '/home/brew_test_gcp_01/Desktop/WallyScraper'
